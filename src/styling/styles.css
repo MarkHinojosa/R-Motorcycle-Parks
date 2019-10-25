@@ -1,0 +1,15 @@
+.main {
+  height: 100vw;
+}
+.Map {
+  height: 100vw;
+}
+
+.message-form {
+  margin: 5px;
+  z-index: 999;
+  width: 30%;
+  position: absolute !important;
+  top: 5;
+  right: 0;
+}
