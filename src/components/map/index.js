@@ -4,7 +4,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet/dist/leaflet.css";
 import "../../styling/styles.css";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Form } from "react-bootstrap";
 
 const pinIcon = L.icon({
   iconUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-icon-2x.png",
@@ -64,12 +64,36 @@ export default class MapComponent extends Component {
         <Card className="message-form">
           <Card.Img variant="top" src="holder.js/100px180" />
           <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
+            <Card.Title>share a riding trail!</Card.Title>
+            {/* this is the form */}
+            <Form>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                </Form.Text>
+              </Form.Group>
+              <Form.Group controlId="exampleForm.ControlTextarea1">
+                <Form.Label>Name of trail</Form.Label>
+                <Form.Control
+                  placeholder="Enter name of trail"
+                  as="textarea"
+                  rows="1"
+                />
+              </Form.Group>
+              <Form.Group controlId="exampleForm.ControlTextarea1">
+                <Form.Label>Notes about this trail</Form.Label>
+                <Form.Control
+                  placeholder="Enter notes"
+                  as="textarea"
+                  rows="3"
+                />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </Form>
           </Card.Body>
         </Card>
       </Map>
