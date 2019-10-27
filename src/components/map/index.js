@@ -20,7 +20,8 @@ export default class MapComponent extends Component {
     userLocation: {
       lat: 0,
       lng: 0
-    }
+    },
+    cardDetails: {}
   };
 
   async componentDidMount() {
@@ -49,6 +50,20 @@ export default class MapComponent extends Component {
     ) : null;
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log(this.state.cardDetails);
+  };
+
+  handleTextChange = event => {
+    this.setState({
+      cardDetails: {
+        ...this.state.cardDetails,
+        [event.target.name]: event.target.value
+      }
+    });
+  };
+
   render() {
     return (
       <Map
@@ -62,11 +77,10 @@ export default class MapComponent extends Component {
         />
         {this.displayMarker()}
         <Card className="message-form">
-          <Card.Img variant="top" src="holder.js/100px180" />
           <Card.Body>
             <Card.Title>share a riding trail!</Card.Title>
-            {/* this is the form */}
-            <Form>
+            {/* form begins here */}
+            <Form onSubmit={this.handleSubmit}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter email" />
@@ -77,6 +91,8 @@ export default class MapComponent extends Component {
               <Form.Group controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Name of trail</Form.Label>
                 <Form.Control
+                  name="name"
+                  onChange={this.handleTextChange}
                   placeholder="Enter name of trail"
                   as="textarea"
                   rows="1"
@@ -85,12 +101,18 @@ export default class MapComponent extends Component {
               <Form.Group controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Notes about this trail</Form.Label>
                 <Form.Control
+                  name="notes"
+                  onChange={this.handleTextChange}
                   placeholder="Enter notes"
                   as="textarea"
                   rows="3"
                 />
               </Form.Group>
-              <Button variant="primary" type="submit">
+              <Button
+                variant="primary"
+                type="submit"
+                disabled={!this.state.haveUsersLocation}
+              >
                 Submit
               </Button>
             </Form>
