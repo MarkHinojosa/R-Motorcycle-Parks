@@ -1,6 +1,7 @@
 const express = require("express");
-const submissionRoute = require("./submission");
+const submissionRoute = require("./submissions");
 const router = express.Router();
+
 // const exampleRoute = require("./exampleRoute");
 
 router.get("/", (req, res) => {
