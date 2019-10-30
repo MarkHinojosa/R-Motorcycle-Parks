@@ -11,4 +11,10 @@
 - Mongoose
 - Express
 
-### 'npm start'
+## Start Client:
+
+`npm start`
+
+## Start Server:
+
+`cd server && npm start`
