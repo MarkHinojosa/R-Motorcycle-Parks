@@ -14,7 +14,7 @@ let port, url;
 dotenv.config();
 
 if (process.env.PORT) {
-  console.log("***ENV File found with PORT Configuration***");
+  console.log("Configured PORT from ENV file");
   port = process.env.PORT;
 } else {
   console.log("***No ENV File found with PORT Configuration***");
@@ -26,8 +26,10 @@ process.env.URL
   : console.log("URL not found, missing env?");
 
 //Connect To DB
-mongoose.connect(url, { useUnifiedTopology: true }, resFromDb =>
-  console.log("connected to db!")
+mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true }, () =>
+  console.log("Connected to database")
 );
 
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+app.listen(port, () =>
+  console.log(`Server online and listening on port ${port}`)
+);
