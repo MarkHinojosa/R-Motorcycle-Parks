@@ -3,12 +3,16 @@ var router = express.Router();
 var mongoose = require("mongoose");
 const Submission = require("../models/Submission");
 
-router.get("/", (req, res) => {
-  console.log(req.body);
-  res.send("submission details Get!!");
+router.get("/", async (req, res) => {
+  try {
+    const submissions = await Submission.find();
+    res.json(submissions);
+  } catch (err) {
+    res.json({ message: error });
+  }
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   console.log(req.body.coordinates);
   const { email, trailName, details } = req.body;
 
@@ -18,10 +22,12 @@ router.post("/", (req, res) => {
     details: details,
     trailName: trailName
   });
-  submission
-    .save()
-    .then(response => res.json(response))
-    .catch(err => res.send({ message: err }));
+  try {
+    const savedSubmission = await submission.save();
+    res.json(savedSubmission);
+  } catch (error) {
+    console.error({ message: error });
+  }
 });
 
 // var Submission = db.model("Submission", schema);
