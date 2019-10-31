@@ -1,11 +1,14 @@
 const express = require("express");
-const app = express();
+const cors = require("cors");
 const routes = require("./src/routes");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
+const app = express();
+
 //Middleware, bodyparser needs to be first!!!
+app.use(cors());
 app.use(bodyParser.json());
 app.use("/api", routes);
 
