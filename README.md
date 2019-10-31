@@ -1,5 +1,7 @@
 # React.js - Motorcycle Parks
 
+A fullstack MERN project that provides a way for offroad riders to share offroad trails. This project utilizes the Leaflet/ Mapbox API.
+
 ## Client Tools:
 
 - React-Leaflet
@@ -7,9 +9,10 @@
 
 ## Server Tools:
 
+- CORS
+- Express
 - MongoDB
 - Mongoose
-- Express
 
 ## Start Client:
 
