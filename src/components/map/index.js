@@ -5,6 +5,7 @@ import "leaflet/dist/leaflet.css";
 import "leaflet/dist/leaflet.css";
 import "../../styling/styles.css";
 import { Card, Button, Form } from "react-bootstrap";
+import Axios from "axios";
 
 const pinIcon = L.icon({
   iconUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-icon-2x.png",
@@ -25,6 +26,8 @@ export default class MapComponent extends Component {
   };
 
   async componentDidMount() {
+    console.log(process.env);
+    this.getParkData();
     navigator.geolocation.getCurrentPosition(
       position => {
         this.setState({
@@ -48,6 +51,12 @@ export default class MapComponent extends Component {
         </Popup>
       </Marker>
     ) : null;
+  };
+
+  getParkData = () => {
+    Axios.get(
+      `http://localhost:${process.env.REACT_APP_PORT}/api/submission`
+    ).then(res => console.log(res));
   };
 
   handleSubmit = event => {
