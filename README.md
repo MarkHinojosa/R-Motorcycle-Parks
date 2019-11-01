@@ -10,6 +10,7 @@ A fullstack MERN project that provides a way for offroad riders to share offroad
 
 ## Server Tools:
 
+- Body Parser
 - CORS
 - Express
 - MongoDB
