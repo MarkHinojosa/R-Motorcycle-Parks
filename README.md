@@ -18,11 +18,11 @@ A fullstack MERN project that provides a way for offroad riders to share offroad
 
 ### Start Client:
 
-`npm start`
+`yarn && npm start`
 
 ### Start Server:
 
-`cd server && npm start`
+`cd server && yarn && npm start`
 
 #### Environment Variables
 
