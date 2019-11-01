@@ -2,6 +2,8 @@
 
 A fullstack MERN project that provides a way for offroad riders to share offroad parks and trails. This project utilizes the Leaflet/ Mapbox API and MongoDB.
 
+![ScreenShot](/gh-assets/screenShot.png)
+
 ## Client Tools:
 
 - React
