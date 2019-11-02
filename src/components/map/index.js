@@ -71,7 +71,11 @@ export default class MapComponent extends Component {
       };
 
       return (
-        <CustomMarker key={ind} icon={"blue"} position={configureCoordinates} />
+        <CustomMarker
+          key={ind}
+          iconColor={"blue"}
+          position={configureCoordinates}
+        />
       );
     });
   };
@@ -89,7 +93,7 @@ export default class MapComponent extends Component {
         />
 
         <CustomMarker
-          icon={"red"}
+          iconColor={"red"}
           key={"usersLocation"}
           position={this.state.userLocation}
         />
