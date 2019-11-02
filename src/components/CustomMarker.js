@@ -20,7 +20,7 @@ export default class CustomMarker extends Component {
   render() {
     return (
       <Marker
-        icon={this.props.icon === "blue" ? blueIcon : redIcon}
+        icon={this.props.iconColor === "blue" ? blueIcon : redIcon}
         position={this.props.position}
       >
         <Popup>
