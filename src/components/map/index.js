@@ -1,18 +1,11 @@
 import React, { Component } from "react";
-import { Map, TileLayer, Marker, Popup } from "react-leaflet";
-import L from "leaflet";
+import { Map, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet/dist/leaflet.css";
 import "../../styling/styles.css";
 import { Card, Button, Form } from "react-bootstrap";
 import Axios from "axios";
-
-const pinIcon = L.icon({
-  iconUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-icon-2x.png",
-  iconSize: [25, 41], // size of the icon
-  iconAnchor: [12.5, 41], // point of the icon which will correspond to marker's location
-  popupAnchor: [0, -41] // point from which the popup should open relative to the iconAnchor
-});
+import CustomMarker from "../CustomMarker";
 
 export default class MapComponent extends Component {
   state = {
@@ -22,11 +15,11 @@ export default class MapComponent extends Component {
       lat: 0,
       lng: 0
     },
-    cardDetails: {}
+    cardDetails: {},
+    parks: []
   };
 
   async componentDidMount() {
-    console.log(process.env);
     this.getParkData();
     navigator.geolocation.getCurrentPosition(
       position => {
@@ -43,20 +36,17 @@ export default class MapComponent extends Component {
     );
   }
 
-  displayMarker = () => {
-    return this.state.haveUsersLocation ? (
-      <Marker icon={pinIcon} position={this.state.userLocation}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-    ) : null;
-  };
-
   getParkData = () => {
     Axios.get(
       `http://localhost:${process.env.REACT_APP_PORT}/api/submission`
-    ).then(res => console.log(res));
+    ).then(res => {
+      this.setState(
+        {
+          parks: res.data
+        },
+        () => console.log(this.state)
+      );
+    });
   };
 
   handleSubmit = event => {
@@ -73,6 +63,19 @@ export default class MapComponent extends Component {
     });
   };
 
+  showParks = () => {
+    return this.state.parks.map((curr, ind) => {
+      let configureCoordinates = {
+        lng: curr.coordinates[1],
+        lat: curr.coordinates[0]
+      };
+
+      return (
+        <CustomMarker key={ind} icon={"blue"} position={configureCoordinates} />
+      );
+    });
+  };
+
   render() {
     return (
       <Map
@@ -84,7 +87,13 @@ export default class MapComponent extends Component {
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {this.displayMarker()}
+
+        <CustomMarker
+          icon={"red"}
+          key={"usersLocation"}
+          position={this.state.userLocation}
+        />
+        {this.showParks()}
         <Card className="message-form">
           <Card.Body>
             <Card.Title>share a riding trail!</Card.Title>
