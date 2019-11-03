@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { Card, Button, Form } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 import Axios from "axios";
 
 class FloatingCard extends Component {
-  state = {};
+  state = {
+    showAbout: false
+  };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -29,6 +32,12 @@ class FloatingCard extends Component {
         [event.target.name]: event.target.value
       }
     });
+  };
+
+  handleAboutClick = () => {
+    this.state.showAbout
+      ? this.setState({ showAbout: false })
+      : this.setState({ showAbout: true });
   };
 
   render() {
@@ -70,15 +79,37 @@ class FloatingCard extends Component {
                 rows="3"
               />
             </Form.Group>
-            <Button
-              variant="primary"
-              type="submit"
-              disabled={!this.props.haveUsersLocation}
-            >
-              Submit
-            </Button>
+            <div className="container">
+              <div className="row align-items-center">
+                <div className="col-lg">
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    disabled={!this.props.haveUsersLocation}
+                  >
+                    Submit
+                  </Button>
+                </div>
+                <div className="col-xs">
+                  <Alert.Link
+                    onClick={this.handleAboutClick}
+                    className="align-bottom"
+                  >
+                    <span>About</span>
+                  </Alert.Link>
+                </div>
+              </div>
+            </div>
           </Form>
         </Card.Body>
+        <Alert show={this.state.showAbout}>
+          Created by:
+          <span class="font-weight-bold text-uppercase"> Mark Hinojosa</span>
+          <br />
+          <span>markhinojosa1212@gmail.com</span>
+          <br />
+          <span class=" text-uppercase">React, Leaflet, Node.js, MongoDB </span>
+        </Alert>
       </Card>
     );
   }
