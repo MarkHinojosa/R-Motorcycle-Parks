@@ -23,7 +23,9 @@ const submissionSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  lat: { type: Number },
+  lng: { type: Number }
 });
 
 module.exports = mongoose.model("Parks", submissionSchema);

@@ -13,14 +13,16 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  console.log(req.body.coordinates);
-  const { email, trailName, details } = req.body;
+  console.log(req.body);
+  const { email, trailName, details, lat, lng } = req.body;
 
   const submission = new Submission({
     email: email,
     coordinates: req.body.coordinates,
     details: details,
-    trailName: trailName
+    trailName: trailName,
+    lat: lat,
+    lng: lng
   });
   try {
     const savedSubmission = await submission.save();
