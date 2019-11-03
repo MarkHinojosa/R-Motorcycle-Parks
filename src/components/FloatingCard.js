@@ -50,6 +50,7 @@ class FloatingCard extends Component {
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
+                required
                 name="email"
                 onChange={this.handleTextChange}
                 type="email"
@@ -62,6 +63,7 @@ class FloatingCard extends Component {
             <Form.Group controlId="exampleForm.ControlTextarea1">
               <Form.Label>Name of trail</Form.Label>
               <Form.Control
+                required
                 name="trailName"
                 onChange={this.handleTextChange}
                 placeholder="Enter name of trail"
@@ -72,6 +74,7 @@ class FloatingCard extends Component {
             <Form.Group controlId="exampleForm.ControlTextarea1">
               <Form.Label>Notes about this trail</Form.Label>
               <Form.Control
+                required
                 name="notes"
                 onChange={this.handleTextChange}
                 placeholder="Enter notes"
