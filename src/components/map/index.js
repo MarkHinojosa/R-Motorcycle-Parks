@@ -3,9 +3,9 @@ import { Map, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet/dist/leaflet.css";
 import "../../styling/styles.css";
-import { Card, Button, Form } from "react-bootstrap";
 import Axios from "axios";
 import CustomMarker from "../CustomMarker";
+import FloatingCard from "../FloatingCard";
 
 export default class MapComponent extends Component {
   state = {
@@ -49,25 +49,11 @@ export default class MapComponent extends Component {
     });
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-    console.log(this.state.cardDetails);
-  };
-
-  handleTextChange = event => {
-    this.setState({
-      cardDetails: {
-        ...this.state.cardDetails,
-        [event.target.name]: event.target.value
-      }
-    });
-  };
-
   showParks = () => {
     return this.state.parks.map((curr, ind) => {
       let configureCoordinates = {
-        lng: curr.coordinates[1],
-        lat: curr.coordinates[0]
+        lng: curr.coordinates[0],
+        lat: curr.coordinates[1]
       };
 
       return (
@@ -98,48 +84,10 @@ export default class MapComponent extends Component {
           position={this.state.userLocation}
         />
         {this.showParks()}
-        <Card className="message-form">
-          <Card.Body>
-            <Card.Title>share a riding trail!</Card.Title>
-            {/* form begins here */}
-            <Form onSubmit={this.handleSubmit}>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
-              </Form.Group>
-              <Form.Group controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Name of trail</Form.Label>
-                <Form.Control
-                  name="name"
-                  onChange={this.handleTextChange}
-                  placeholder="Enter name of trail"
-                  as="textarea"
-                  rows="1"
-                />
-              </Form.Group>
-              <Form.Group controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Notes about this trail</Form.Label>
-                <Form.Control
-                  name="notes"
-                  onChange={this.handleTextChange}
-                  placeholder="Enter notes"
-                  as="textarea"
-                  rows="3"
-                />
-              </Form.Group>
-              <Button
-                variant="primary"
-                type="submit"
-                disabled={!this.state.haveUsersLocation}
-              >
-                Submit
-              </Button>
-            </Form>
-          </Card.Body>
-        </Card>
+        <FloatingCard
+          coordinates={this.state.userLocation}
+          haveUsersLocation={this.state.haveUsersLocation}
+        />
       </Map>
     );
   }
