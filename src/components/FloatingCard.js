@@ -50,8 +50,6 @@ class FloatingCard extends Component {
       email.length >= 5 &&
       email.length < 50;
 
-    console.log(validSubmission);
-
     return validSubmission && this.props.haveUsersLocation ? true : false;
   };
 
