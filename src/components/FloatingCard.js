@@ -26,9 +26,7 @@ class FloatingCard extends Component {
         lng: this.props.coordinates.lng
       }
     ).then(res => {
-      console.log(res, console.log(this.state));
       this.setState({ sendingData: false, sentParkData: true });
-      console.log(res, console.log(this.state));
     });
   };
 

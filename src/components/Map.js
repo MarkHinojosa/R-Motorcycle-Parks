@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Map, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet/dist/leaflet.css";
-import "../../styling/styles.css";
+import "../styling/styles.css";
 import Axios from "axios";
-import CustomMarker from "../CustomMarker";
-import FloatingCard from "../FloatingCard";
+import CustomMarker from "./CustomMarker";
+import FloatingCard from "./FloatingCard";
 
 export default class MapComponent extends Component {
   state = {
