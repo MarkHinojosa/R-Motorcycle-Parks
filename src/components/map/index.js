@@ -51,6 +51,7 @@ export default class MapComponent extends Component {
 
   showParks = () => {
     return this.state.parks.map((curr, ind) => {
+      console.log(curr);
       let configureCoordinates = {
         lng: curr.coordinates[0],
         lat: curr.coordinates[1]
@@ -61,6 +62,8 @@ export default class MapComponent extends Component {
           key={ind}
           iconColor={"blue"}
           position={configureCoordinates}
+          notes={curr.details}
+          trailName={curr.trailName}
         />
       );
     });

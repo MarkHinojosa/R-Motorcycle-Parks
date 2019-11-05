@@ -19,7 +19,7 @@ class FloatingCard extends Component {
       `http://localhost:${process.env.REACT_APP_PORT}/api/submission`,
       {
         email: this.state.cardDetails.email,
-        details: this.state.cardDetails.notes,
+        details: this.state.cardDetails.details,
         coordinates: [this.props.coordinates.lng, this.props.coordinates.lat],
         trailName: this.state.cardDetails.trailName,
         lat: this.props.coordinates.lat,
@@ -49,7 +49,10 @@ class FloatingCard extends Component {
 
   render() {
     return (
-      <Card className="message-form">
+      <Card
+        className="message-form"
+        style={{ borderRadius: 10, borderColor: "gray", borderWidth: 1 }}
+      >
         <Card.Body>
           {/* form begins here */}
           {this.state.sentParkData ? (
@@ -84,12 +87,12 @@ class FloatingCard extends Component {
                   />
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlTextarea1">
-                  <Form.Label>Notes about this trail</Form.Label>
+                  <Form.Label>Details about this trail</Form.Label>
                   <Form.Control
                     required
-                    name="notes"
+                    name="details"
                     onChange={this.handleTextChange}
-                    placeholder="Enter notes"
+                    placeholder="Enter details"
                     as="textarea"
                     rows="3"
                   />
