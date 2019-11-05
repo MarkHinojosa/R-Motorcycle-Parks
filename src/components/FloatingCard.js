@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Card, Button, Form } from "react-bootstrap";
 import Alert from "react-bootstrap/Alert";
 import Axios from "axios";
-import { isValid } from "ipaddr.js";
 
 class FloatingCard extends Component {
   state = {
