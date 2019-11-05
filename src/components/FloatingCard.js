@@ -15,6 +15,11 @@ class FloatingCard extends Component {
     this.setState({
       sendingData: true
     });
+
+    this.isValid() ? this.makePostToServer() : console.log(this.isValid());
+  };
+
+  makePostToServer = () => {
     Axios.post(
       `http://localhost:${process.env.REACT_APP_PORT}/api/submission`,
       {
@@ -28,6 +33,26 @@ class FloatingCard extends Component {
     ).then(res => {
       this.setState({ sendingData: false, sentParkData: true });
     });
+  };
+
+  isValid = () => {
+    let { email, details, trailName } = this.state.cardDetails;
+
+    trailName = trailName.trim();
+    details = details.trim();
+    email = email.trim();
+
+    const validSubmission =
+      trailName.length >= 3 &&
+      trailName.length < 100 &&
+      details.length >= 5 &&
+      details.length < 500 &&
+      email.length >= 5 &&
+      email.length < 50;
+
+    console.log(validSubmission);
+
+    return validSubmission && this.props.haveUsersLocation ? true : false;
   };
 
   handleTextChange = event => {
@@ -54,7 +79,10 @@ class FloatingCard extends Component {
         <Card.Body>
           {/* form begins here */}
           {this.state.sentParkData ? (
-            <Card.Text>Thanks for using Motorcycle Maps!</Card.Text>
+            <Card.Text>
+              Your contribution has been submitted. Thanks for using Motorcycle
+              Maps!
+            </Card.Text>
           ) : (
             <div>
               <Card.Title>share a riding trail!</Card.Title>
