@@ -40,18 +40,14 @@ export default class MapComponent extends Component {
     Axios.get(
       `http://localhost:${process.env.REACT_APP_PORT}/api/submission`
     ).then(res => {
-      this.setState(
-        {
-          parks: res.data
-        },
-        () => console.log(this.state)
-      );
+      this.setState({
+        parks: res.data
+      });
     });
   };
 
   showParks = () => {
     return this.state.parks.map((curr, ind) => {
-      console.log(curr);
       let configureCoordinates = {
         lng: curr.coordinates[0],
         lat: curr.coordinates[1]
