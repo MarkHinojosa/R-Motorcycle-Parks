@@ -16,21 +16,20 @@ class FloatingCard extends Component {
       sendingData: true
     });
 
-    this.isValid() ? this.makePostToServer() : console.log(this.isValid());
+    this.isValid()
+      ? this.makePostToServer()
+      : console.log("is submission valid?", this.isValid());
   };
 
   makePostToServer = () => {
-    Axios.post(
-      `http://localhost:${process.env.REACT_APP_PORT}/api/submission`,
-      {
-        email: this.state.cardDetails.email,
-        details: this.state.cardDetails.details,
-        coordinates: [this.props.coordinates.lng, this.props.coordinates.lat],
-        trailName: this.state.cardDetails.trailName,
-        lat: this.props.coordinates.lat,
-        lng: this.props.coordinates.lng
-      }
-    ).then(res => {
+    Axios.post(`${process.env.REACT_APP_API_URL}/api/submission`, {
+      email: this.state.cardDetails.email,
+      details: this.state.cardDetails.details,
+      coordinates: [this.props.coordinates.lng, this.props.coordinates.lat],
+      trailName: this.state.cardDetails.trailName,
+      lat: this.props.coordinates.lat,
+      lng: this.props.coordinates.lng
+    }).then(res => {
       this.setState({ sendingData: false, sentParkData: true });
     });
   };

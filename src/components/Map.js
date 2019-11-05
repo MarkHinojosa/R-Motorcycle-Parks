@@ -38,7 +38,7 @@ export default class MapComponent extends Component {
 
   getParkData = () => {
     Axios.get(
-      `http://localhost:${process.env.REACT_APP_PORT}/api/submission`
+      `https://guarded-everglades-11833.herokuapp.com/api/submission`
     ).then(res => {
       this.setState({
         parks: res.data
