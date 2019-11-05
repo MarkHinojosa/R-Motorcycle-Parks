@@ -16,7 +16,9 @@ class FloatingCard extends Component {
       sendingData: true
     });
 
-    this.isValid() ? this.makePostToServer() : console.log(this.isValid());
+    this.isValid()
+      ? this.makePostToServer()
+      : console.log("is submission valid?", this.isValid());
   };
 
   makePostToServer = () => {
