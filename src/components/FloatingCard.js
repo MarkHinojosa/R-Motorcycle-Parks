@@ -22,6 +22,7 @@ class FloatingCard extends Component {
   };
 
   makePostToServer = () => {
+    this.props.submittingData();
     Axios.post(`${process.env.REACT_APP_API_URL}/api/submission`, {
       email: this.state.cardDetails.email,
       details: this.state.cardDetails.details,
@@ -31,6 +32,7 @@ class FloatingCard extends Component {
       lng: this.props.coordinates.lng
     }).then(res => {
       this.setState({ sendingData: false, sentParkData: true });
+      this.props.submittedData();
     });
   };
 
@@ -70,7 +72,7 @@ class FloatingCard extends Component {
   render() {
     return (
       <Card
-        className="message-form"
+        className="floating-card"
         style={{ borderRadius: 10, borderColor: "gray", borderWidth: 1 }}
       >
         <Card.Body>

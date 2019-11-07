@@ -6,6 +6,7 @@ import "../styling/styles.css";
 import Axios from "axios";
 import CustomMarker from "./CustomMarker";
 import FloatingCard from "./FloatingCard";
+import LoadingIndicator from "./LoadingScreen";
 
 export default class MapComponent extends Component {
   state = {
@@ -16,7 +17,8 @@ export default class MapComponent extends Component {
       lng: 0
     },
     cardDetails: {},
-    parks: []
+    parks: [],
+    loading: false
   };
 
   async componentDidMount() {
@@ -29,7 +31,8 @@ export default class MapComponent extends Component {
           userLocation: {
             lat: position.coords.latitude,
             lng: position.coords.longitude
-          }
+          },
+          loading: false
         });
       },
       err => console.log(err)
@@ -37,6 +40,7 @@ export default class MapComponent extends Component {
   }
 
   getParkData = () => {
+    this.setState({ loading: true });
     Axios.get(
       `https://guarded-everglades-11833.herokuapp.com/api/submission`
     ).then(res => {
@@ -65,10 +69,17 @@ export default class MapComponent extends Component {
     });
   };
 
+  submittingData = () => {
+    this.setState({ loading: true });
+  };
+  submittedData = () => {
+    this.setState({ loading: false });
+  };
+
   render() {
     return (
       <Map
-        className="Map"
+        className="map"
         center={this.state.userLocation}
         zoom={this.state.zoom}
       >
@@ -84,9 +95,12 @@ export default class MapComponent extends Component {
         />
         {this.showParks()}
         <FloatingCard
+          submittedData={this.submittedData}
+          submittingData={this.submittingData}
           coordinates={this.state.userLocation}
           haveUsersLocation={this.state.haveUsersLocation}
         />
+        {this.state.loading ? <LoadingIndicator /> : null}
       </Map>
     );
   }
