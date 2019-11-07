@@ -1,7 +1,8 @@
 .main {
   height: 100%;
+  width: 100%;
 }
-.Map {
+.map {
   height: 100%;
 }
 
@@ -19,12 +20,23 @@ body {
   height: 100%;
 }
 
-.message-form {
+.floating-card {
   border-radius: 100;
   margin: 5px;
-  z-index: 999;
+  z-index: 998;
   width: 30%;
   position: absolute !important;
   top: 5;
   right: 0;
+}
+
+.loading-indicator {
+  z-index: 999;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  left: 50%;
+  margin-left: -50px;
+  top: 50%;
+  margin-top: -50px;
 }
