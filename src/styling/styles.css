@@ -28,6 +28,7 @@ body {
   position: absolute !important;
   top: 5;
   right: 0;
+  height: 65%;
 }
 
 .loading-indicator {
@@ -39,4 +40,8 @@ body {
   margin-left: -50px;
   top: 50%;
   margin-top: -50px;
+}
+
+.btn-primary {
+  height: 1%;
 }
