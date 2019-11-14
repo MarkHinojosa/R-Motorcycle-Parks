@@ -22,15 +22,23 @@ body {
 
 .floating-card {
   border-radius: 100;
-  margin: 5px;
+  margin: 1vw;
   z-index: 998;
   width: 30%;
   position: absolute !important;
   top: 5;
   right: 0;
-  height: 65%;
+  border-color: "gray";
 }
-
+.label-text {
+  font-size: 1.5vw;
+}
+.submit-button {
+  height: 10px;
+}
+.card-title {
+  font-size: 10;
+}
 .loading-indicator {
   z-index: 999;
   height: 100px;
@@ -43,5 +51,5 @@ body {
 }
 
 .btn-primary {
-  height: 1%;
+  height: 3%;
 }
