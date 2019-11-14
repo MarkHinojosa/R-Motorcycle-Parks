@@ -71,10 +71,7 @@ class FloatingCard extends Component {
 
   render() {
     return (
-      <Card
-        className="floating-card"
-        style={{ borderRadius: 10, borderColor: "gray", borderWidth: 1 }}
-      >
+      <Card className="floating-card" style={{}}>
         <Card.Body>
           {/* form begins here */}
           {this.state.sentParkData ? (
@@ -84,11 +81,11 @@ class FloatingCard extends Component {
             </Card.Text>
           ) : (
             <div>
-              <Card.Title>share a riding trail!</Card.Title>
+              {/* <Card.Title>share a riding trail!</Card.Title> */}
 
               <Form onSubmit={this.handleSubmit}>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Email address</Form.Label>
+                  <Form.Label className="label-text">Email address</Form.Label>
                   <Form.Control
                     required
                     name="email"
@@ -101,7 +98,7 @@ class FloatingCard extends Component {
                   </Form.Text>
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlTextarea1">
-                  <Form.Label>Name of trail</Form.Label>
+                  <Form.Label className="label-text">Name of trail</Form.Label>
                   <Form.Control
                     required
                     name="trailName"
@@ -112,20 +109,23 @@ class FloatingCard extends Component {
                   />
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlTextarea1">
-                  <Form.Label>Details about this trail</Form.Label>
+                  <Form.Label className="label-text">
+                    Details about this trail
+                  </Form.Label>
                   <Form.Control
                     required
                     name="details"
                     onChange={this.handleTextChange}
                     placeholder="Enter details"
                     as="textarea"
-                    rows="3"
+                    rows="1"
                   />
                 </Form.Group>
                 <div className="container">
                   <div className="row align-items-center">
                     <div className="col-lg">
                       <Button
+                        className="submit-button"
                         variant="primary"
                         type="submit"
                         disabled={!this.props.haveUsersLocation}
