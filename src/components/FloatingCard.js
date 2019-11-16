@@ -82,7 +82,7 @@ class FloatingCard extends Component {
           ) : (
             <div>
               {/* <Card.Title>share a riding trail!</Card.Title> */}
-
+              <div className="card-title">share a trail!</div>
               <Form onSubmit={this.handleSubmit}>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label className="label-text">Email address</Form.Label>
@@ -93,7 +93,7 @@ class FloatingCard extends Component {
                     type="email"
                     placeholder="Enter email"
                   />
-                  <Form.Text className="text-muted">
+                  <Form.Text className="text-muted ">
                     We'll never share your email with anyone else.
                   </Form.Text>
                 </Form.Group>
@@ -123,24 +123,23 @@ class FloatingCard extends Component {
                 </Form.Group>
                 <div className="container">
                   <div className="row align-items-center">
-                    <div className="col-lg">
-                      <Button
-                        className="submit-button"
-                        variant="primary"
-                        type="submit"
-                        disabled={!this.props.haveUsersLocation}
-                      >
-                        Submit
-                      </Button>
-                    </div>
-                    <div className="col-xs">
-                      <Alert.Link
-                        onClick={this.handleAboutClick}
-                        className="align-bottom"
-                      >
-                        <span>About</span>
-                      </Alert.Link>
-                    </div>
+                    <Button
+                      size="sm"
+                      className="submit-button col-sm"
+                      variant="primary"
+                      type="submit"
+                      disabled={!this.props.haveUsersLocation}
+                    >
+                      Submit
+                    </Button>
+                    <div className="col-sm"></div>
+                    <Alert.Link
+                      size="sm"
+                      onClick={this.handleAboutClick}
+                      className="about-container col-xs"
+                    >
+                      <text className="about-text">About</text>
+                    </Alert.Link>
                   </div>
                 </div>
               </Form>
