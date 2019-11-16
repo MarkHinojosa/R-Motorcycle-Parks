@@ -23,14 +23,17 @@ class FloatingCard extends Component {
 
   makePostToServer = () => {
     this.props.submittingData();
-    Axios.post(`${process.env.API_URL}/api/submission`, {
-      email: this.state.cardDetails.email,
-      details: this.state.cardDetails.details,
-      coordinates: [this.props.coordinates.lng, this.props.coordinates.lat],
-      trailName: this.state.cardDetails.trailName,
-      lat: this.props.coordinates.lat,
-      lng: this.props.coordinates.lng
-    }).then(res => {
+    Axios.post(
+      `https://guarded-everglades-11833.herokuapp.com/api/submission`,
+      {
+        email: this.state.cardDetails.email,
+        details: this.state.cardDetails.details,
+        coordinates: [this.props.coordinates.lng, this.props.coordinates.lat],
+        trailName: this.state.cardDetails.trailName,
+        lat: this.props.coordinates.lat,
+        lng: this.props.coordinates.lng
+      }
+    ).then(res => {
       this.setState({ sendingData: false, sentParkData: true });
       this.props.submittedData();
     });
