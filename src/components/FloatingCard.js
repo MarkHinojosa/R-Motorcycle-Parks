@@ -23,7 +23,7 @@ class FloatingCard extends Component {
 
   makePostToServer = () => {
     this.props.submittingData();
-    Axios.post(`${process.env.REACT_APP_API_URL}/api/submission`, {
+    Axios.post(`${process.env.REACT_APP_API_URL}/apiI/submission`, {
       email: this.state.cardDetails.email,
       details: this.state.cardDetails.details,
       coordinates: [this.props.coordinates.lng, this.props.coordinates.lat],
